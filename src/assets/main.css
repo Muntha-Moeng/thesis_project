@@ -1,0 +1,99 @@
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue:       #1a3fcc;
+  --blue-dark:  #1530a8;
+  --blue-light: #e8edff;
+  --blue-mid:   #2b50e8;
+  --accent:     #1a3fcc;
+  --bg:         #eef1f8;
+  --bg-white:   #ffffff;
+  --card-bg:    #ffffff;
+  --nav-bg:     rgba(238,241,248,0.92);
+  --text:       #111827;
+  --text-mid:   #374151;
+  --text-muted: #6b7280;
+  --border:     #d1d9f0;
+  --radius:     10px;
+  --sans:       'Plus Jakarta Sans', sans-serif;
+  --shadow:     0 2px 16px rgba(26,63,204,0.08);
+  --shadow-md:  0 8px 32px rgba(26,63,204,0.14);
+  --features-bg: #ffffff;
+  --how-bg: var(--blue);
+  --how-text: #fff;
+  --how-sub: rgba(255,255,255,0.65);
+}
+
+[data-theme="dark"] {
+  --blue:       #4d6ef5;
+  --blue-dark:  #3a58e0;
+  --blue-light: #1e2a52;
+  --bg:         #0f1117;
+  --bg-white:   #161b27;
+  --card-bg:    #1c2235;
+  --nav-bg:     rgba(15,17,23,0.92);
+  --text:       #f1f5fd;
+  --text-mid:   #b8c2dc;
+  --text-muted: #7a8aaa;
+  --border:     #2a3250;
+  --shadow:     0 2px 16px rgba(0,0,0,0.3);
+  --shadow-md:  0 8px 32px rgba(0,0,0,0.4);
+  --features-bg: #161b27;
+  --how-bg: #1c2235;
+  --how-text: #f1f5fd;
+  --how-sub: rgba(241,245,253,0.6);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: var(--sans); }
+img { max-width: 100%; display: block; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 99px; }
+
+/* Scroll reveal */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+[data-reveal].revealed { opacity: 1; transform: none; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.7s ease both; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.22s; }
+.delay-3 { animation-delay: 0.34s; }
+.delay-4 { animation-delay: 0.46s; }
+
+/* ── Dashboard ── */
+.dash-layout * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Ensure SVG icons inherit color properly in dark mode */
+[data-theme="dark"] img[src$=".svg"] {
+  /* SVGs that use currentColor will adapt; for icon-only imgs we rely on opacity/filter */
+}
+
+/* Toast / notification animation */
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.toast { animation: slideInRight 0.3s ease; }
