@@ -244,6 +244,73 @@
       </p>
 
       <div class="export-cards">
+        <!-- PDF Export -->
+        <div class="export-card" :class="{ loading: exporting === 'pdf' }">
+          <div class="export-card-icon export-icon-pdf">
+            <img
+              :src="icons.download"
+              width="28"
+              height="28"
+              alt="pdf"
+              class="export-card-img export-card-img--red"
+            />
+          </div>
+          <div class="export-card-body">
+            <h4>Export as PDF</h4>
+            <p>
+              Save a print-ready PDF snapshot of your portfolio. Perfect for
+              attaching to job applications or sending offline.
+            </p>
+            <ul class="export-features">
+              <li>
+                <img
+                  :src="icons.check"
+                  width="12"
+                  height="12"
+                  alt="check"
+                  class="feat-check"
+                />
+                Print-ready A4 format
+              </li>
+              <li>
+                <img
+                  :src="icons.check"
+                  width="12"
+                  height="12"
+                  alt="check"
+                  class="feat-check"
+                />
+                Works offline — no internet needed
+              </li>
+              <li>
+                <img
+                  :src="icons.check"
+                  width="12"
+                  height="12"
+                  alt="check"
+                  class="feat-check"
+                />
+                Ideal for job applications
+              </li>
+            </ul>
+          </div>
+          <button
+            class="export-btn export-btn-pdf"
+            :disabled="exporting === 'pdf'"
+            @click="exportPdf"
+          >
+            <span v-if="exporting === 'pdf'" class="export-spinner"></span>
+            <img
+              v-else
+              :src="icons.download"
+              width="16"
+              height="16"
+              alt="pdf"
+              class="btn-icon btn-icon--white"
+            />
+            {{ exporting === "pdf" ? "Generating PDF…" : "Download PDF" }}
+          </button>
+        </div>
         <!-- Link Export -->
         <div class="export-card" :class="{ loading: exporting === 'link' }">
           <div class="export-card-icon export-icon-link">
@@ -657,6 +724,27 @@ function buildPortfolioHTML() {
   </footer>
 </body>
 </html>`;
+}
+
+// ── PDF Export ──
+async function exportPdf() {
+  exporting.value = "pdf";
+  try {
+    const html = buildPortfolioHTML();
+    const printWindow = window.open("", "_blank");
+    printWindow.document.write(html);
+    printWindow.document.close();
+    printWindow.onload = () => {
+      printWindow.focus();
+      printWindow.print();
+      printWindow.onafterprint = () => printWindow.close();
+    };
+    showToast("PDF ready — use your browser's Save as PDF option.", "success");
+  } catch {
+    showToast("Could not open PDF preview. Please try again.", "error");
+  } finally {
+    exporting.value = null;
+  }
 }
 
 // ── Copy Link ──
@@ -1254,6 +1342,20 @@ function handlePublish() {
   cursor: not-allowed;
 }
 
+.export-icon-pdf {
+  background: #fee2e2;
+}
+.export-card-img--red {
+  filter: invert(20%) sepia(90%) saturate(2000%) hue-rotate(340deg)
+    brightness(95%);
+}
+.export-btn-pdf {
+  background: #dc2626;
+  color: #fff;
+}
+.export-btn-pdf:hover:not(:disabled) {
+  background: #b91c1c;
+}
 .export-btn-link {
   background: #1a3fcc;
   color: #fff;

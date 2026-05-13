@@ -249,22 +249,28 @@
               @save-draft="handleSaveDraft"
               @add-project="builderStep = 4"
             />
-            <ProjectShowcase
+            <Experience
               v-else-if="builderStep === 4"
               key="4"
-              @next="builderStep = 5"
               @save-draft="handleSaveDraft"
+              @next="builderStep = 5"
             />
-            <ContactVisibility
+            <ProjectShowcase
               v-else-if="builderStep === 5"
               key="5"
               @next="builderStep = 6"
               @save-draft="handleSaveDraft"
+            />
+            <ContactVisibility
+              v-else-if="builderStep === 6"
+              key="6"
+              @next="builderStep = 7"
+              @save-draft="handleSaveDraft"
               @add-contact="() => {}"
             />
             <PreviewExport
-              v-else-if="builderStep === 6"
-              key="6"
+              v-else-if="builderStep === 7"
+              key="7"
               @save-draft="handleSaveDraft"
             />
           </Transition>
@@ -306,6 +312,7 @@ const icons = {
 import IntroPageEditor from "./builder/IntroPageEditor.vue";
 import AboutSection from "./builder/AboutSection.vue";
 import ExpertiseEditor from "./builder/ExpertiseEditor.vue";
+import Experience from "./builder/Experience.vue";
 import ProjectShowcase from "./builder/ProjectShowcase.vue";
 import ContactVisibility from "./builder/ContactVisibility.vue";
 import PreviewExport from "./builder/PreviewExport.vue";
@@ -385,6 +392,7 @@ const steps = [
   { name: "Intro Page", desc: "Name, title & social links" },
   { name: "About Section", desc: "Bio & cover image" },
   { name: "Expertise", desc: "Skills & tech stack" },
+  { name: "Experience", desc: "Work history & roles" },
   { name: "Projects", desc: "Showcase your work" },
   { name: "Contact", desc: "Visibility & integrations" },
   { name: "Preview & Export", desc: "Publish your portfolio" },
