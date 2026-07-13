@@ -2,7 +2,7 @@
   <nav class="nav" :class="{ scrolled }">
     <div class="nav-inner">
       <router-link to="/" class="nav-logo">
-        <img src="../assets/icons/logo.svg" alt="Logo" class="logo-img" />
+        <img src="../assets/icons/logo.png" alt="Logo" class="logo-img" />
         Portfolio Builder
       </router-link>
 
@@ -26,7 +26,6 @@
             class="lang-flag-img"
             :alt="lang === 'en' ? 'KH' : 'US'"
           />
-          <span class="lang-label">{{ lang === "en" ? "KH" : "EN" }}</span>
         </button>
 
         <!-- Theme toggle -->
@@ -208,12 +207,11 @@ const vClickOutside = {
   color: var(--text);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   white-space: nowrap;
 }
 .logo-img {
-  width: 24px;
-  height: 24px;
+  width: 64px;
+  height: 64px;
 }
 
 .nav-links {
@@ -277,8 +275,8 @@ const vClickOutside = {
   display: block;
 }
 .lang-flag-img {
-  width: 20px;
-  height: 14px;
+  width: 22px;
+  height: 16px;
   border-radius: 2px;
   display: block;
 }

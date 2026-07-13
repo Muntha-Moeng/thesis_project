@@ -5,7 +5,7 @@
       <div class="sidebar-header">
         <router-link to="/" class="sidebar-logo">
           <img
-            src="../../assets/icons/logo.svg"
+            src="../../assets/icons/logo.png"
             alt="Logo"
             class="sidebar-logo-img"
           />
@@ -415,12 +415,11 @@ function handleLogout() {
   justify-content: space-between;
   padding: 1.25rem 1rem 1rem;
   border-bottom: 1px solid var(--border, #d1d9f0);
-  gap: 0.5rem;
+  /* gap: 0.5rem; */
 }
 .sidebar-logo {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   font-weight: 700;
   font-size: 0.95rem;
   color: var(--text, #111827);
@@ -428,9 +427,8 @@ function handleLogout() {
   overflow: hidden;
 }
 .sidebar-logo-img {
-  width: 26px;
-  height: 26px;
-  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
 }
 .collapse-btn {
   background: none;
